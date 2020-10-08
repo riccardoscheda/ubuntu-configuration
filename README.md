@@ -71,6 +71,9 @@ In my case i want to mount the 320G partition, so `/dev/sda5`.
 Next use the blkid command to get the UUID of partitions. The uuid is necessary to add the partitions to the fstab file. 
 ```
 sudo blkid
+```
+Output:
+```
 /dev/sda1: LABEL="SYSTEM" UUID="BA26-B19F" TYPE="vfat" PARTLABEL="EFI system partition" PARTUUID="6e0d1331-1454-430f-92dc-e639cbf5fa51"
 /dev/sda2: PARTLABEL="Microsoft reserved partition" PARTUUID="d20ffaf7-65b0-4477-9e3c-e2e488e7faa3"
 /dev/sda3: LABEL="OS" UUID="01D37E334FCB9410" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="3f7d7249-4e5c-4aa9-8ef7-74745099451c"
@@ -89,4 +92,4 @@ and insert
 UUID=01D37E31970BDA30	/media/dati	ntfs	errors=remount-ro	0	1	
 ```
 
-Then reboot. 
+Then reboot
