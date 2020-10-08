@@ -1,2 +1,2 @@
-yes | conda install git spyder pandas matplotlib networkx scikit-learn
+yes | conda install spyder pandas matplotlib networkx scikit-learn
 
