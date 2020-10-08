@@ -37,7 +37,7 @@ During installation press Enter and yes when asked.
 Then we can install python libraries and also Spyder:
 
 ```
-bash pylabraries.sh
+bash pylibraries.sh
 ```
 
 Now we have ubuntu configurated.
