@@ -66,4 +66,27 @@ Device         Start       End   Sectors  Size Type
 /dev/sda7  982095872 999192575  17096704  8,2G Microsoft basic data
 
 ```
+In my case i want to mount the 320G partition, so `/dev/sda5`.
 
+Next use the blkid command to get the UUID of partitions. The uuid is necessary to add the partitions to the fstab file. 
+```
+sudo blkid
+/dev/sda1: LABEL="SYSTEM" UUID="BA26-B19F" TYPE="vfat" PARTLABEL="EFI system partition" PARTUUID="6e0d1331-1454-430f-92dc-e639cbf5fa51"
+/dev/sda2: PARTLABEL="Microsoft reserved partition" PARTUUID="d20ffaf7-65b0-4477-9e3c-e2e488e7faa3"
+/dev/sda3: LABEL="OS" UUID="01D37E334FCB9410" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="3f7d7249-4e5c-4aa9-8ef7-74745099451c"
+/dev/sda5: LABEL="DATI" UUID="01D37E31970BDA30" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="4fd9ebf0-7e33-01d3-f8f5-eca719bfe900"
+/dev/sda6: UUID="442cd4b2-28fe-4fb1-bed3-b214bd964bb7" TYPE="ext4" PARTUUID="547712b7-2cde-423d-a997-42f8965e12a9"
+/dev/sda7: UUID="f6355da4-8ef1-4e2f-84e5-3a64f11082a1" TYPE="swap" PARTLABEL="Basic data partition" PARTUUID="0001297f-2ba0-6034-33fe-db3bfe520200"
+
+```
+So I need the UUID `01D37E31970BDA30`. Now we have to add this partition in file fstab:
+```
+sudo gedit /etc/fstab
+```
+and insert 
+```
+############### PARTIZIONE DATI #################
+UUID=01D37E31970BDA30	/media/dati	ntfs	errors=remount-ro	0	1	
+```
+
+Then reboot. 
