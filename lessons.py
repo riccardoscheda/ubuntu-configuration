@@ -3,7 +3,7 @@ import os
 import speech_recognition as sr
 import datetime
 import soundfile as sf
-
+import time
 
 r = sr.Recognizer()
 
@@ -17,6 +17,7 @@ def convert(audio_file):
 		command = "ffmpeg -i " + str(audio_file) + " -v quiet -vn -ss " + str(split) + " -to " + str(split + datetime.timedelta(seconds=10)) + " tmp.wav -y "
 		os.system(command)
 	
+		time.sleep(5)
 		filename = audio_file.split(".")[0] + ".txt"
 		with sr.AudioFile("tmp.wav") as source:
 			audio_text = r.record(source,duration=10)
